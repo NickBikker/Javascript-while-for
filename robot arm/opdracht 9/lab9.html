@@ -1,0 +1,36 @@
+<html>
+<body>
+<canvas id="canvas" width="800" height="600"></canvas>
+<script src="lab9.js"></script>
+<script>
+    // Robotarm bibliotheek inladen
+    var canvas = document.getElementById("canvas");
+    var robotArm = new RobotArm(canvas);
+
+
+    robotArm.loadLevel("exercise 9");
+
+    robotArm.speed = 500;
+    for (var i = 1; i < 5; i++) { //Deze lijn zorgt ervoor dat de volledige loop zich 5x herhaald
+        for (var a = 0; a < i; a++) { //deze lijn zorgt ervoor dat als a kleiner is dan i dat de begin positie 1 plek opschuift
+            robotArm.grab(); //de robot pakt een blokje
+            for (var j = 0; j < 5; j++) { //de robot gaat 5 plekken naar rechts
+                robotArm.moveRight();
+            }
+            robotArm.drop(); //hier dropt de robot de het blokje
+            for (var k = 0; k < 5; k++) { //de robot gaat hier 5 plekken naar links
+                robotArm.moveLeft();
+            }
+        }
+        robotArm.moveRight();  //dit is de command voor dat de beginpositie veranderd.
+    }
+
+
+
+
+
+    // De door jou opgegeven instructies uitvoeren
+    robotArm.run();
+</script>
+</body>
+</html>
